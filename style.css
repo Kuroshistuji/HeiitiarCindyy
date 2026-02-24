@@ -486,7 +486,7 @@ body {
     }
 
     .photo-item img {
-        height: auto;
+        height: 100%;
         /* Let aspect-ratio handle it */
     }
 

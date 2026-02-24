@@ -34,6 +34,25 @@ function createHeart() {
 setInterval(createHeart, 300);
 
 // ==================== MUSIC CONTROL ====================
+let audioUnlocked = false;
+
+// Unlock audio context on first interaction (fixes mobile autoplay)
+function initAudio() {
+    if (!audioUnlocked) {
+        bgMusic.play().then(() => {
+            bgMusic.pause();
+            audioUnlocked = true;
+        }).catch(err => console.log('Audio unlock failed:', err));
+
+        // Remove listeners once unlocked
+        document.removeEventListener('touchstart', initAudio);
+        document.removeEventListener('click', initAudio);
+    }
+}
+
+document.addEventListener('touchstart', initAudio, { once: true });
+document.addEventListener('click', initAudio, { once: true });
+
 function startMusic() {
     if (!musicStarted) {
         bgMusic.play().catch(error => {
