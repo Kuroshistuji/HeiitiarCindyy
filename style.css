@@ -1,0 +1,609 @@
+/* ==================== RESET & VARIABLES ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Pink Palette */
+    --pink-primary: #ff6b9d;
+    --pink-secondary: #ffc2d1;
+    --pink-light: #ffe5ec;
+    --pink-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --pink-gradient-soft: linear-gradient(135deg, #ffecd2 0%, #fcb69f 50%, #ff9a9e 100%);
+
+    /* Typography */
+    --font-title: 'Fredoka One', cursive;
+    --font-body: 'Varela Round', sans-serif;
+
+    /* Spacing */
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+}
+
+body {
+    font-family: var(--font-body);
+    background: var(--pink-gradient-soft);
+    color: #333;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* ==================== FLOATING HEARTS BACKGROUND ==================== */
+.hearts-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.heart {
+    position: absolute;
+    font-size: 20px;
+    color: var(--pink-primary);
+    opacity: 0;
+    animation: float 8s ease-in infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.8;
+    }
+
+    90% {
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateY(-10vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* ==================== SECTION LAYOUT ==================== */
+.section {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--spacing-lg);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+    z-index: 10;
+}
+
+.section.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.content-wrapper {
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.9);
+    padding: var(--spacing-xl);
+    border-radius: 30px;
+    box-shadow: 0 20px 60px rgba(255, 107, 157, 0.3);
+    backdrop-filter: blur(10px);
+    animation: slideUp 0.8s ease;
+    position: relative;
+    z-index: 20;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* ==================== TYPOGRAPHY ==================== */
+.section-title {
+    font-family: var(--font-title);
+    font-size: 2.5rem;
+    color: var(--pink-primary);
+    margin-bottom: var(--spacing-md);
+    text-shadow: 2px 2px 4px rgba(255, 107, 157, 0.2);
+}
+
+.section-text {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.6;
+}
+
+/* ==================== BUTTONS ==================== */
+.btn-primary,
+.btn-next,
+.btn-yes,
+.btn-no {
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    font-family: var(--font-body);
+    font-weight: bold;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.btn-primary,
+.btn-next,
+.btn-yes {
+    background: linear-gradient(135deg, var(--pink-primary), #ff8fab);
+    color: white;
+}
+
+.btn-primary:hover,
+.btn-next:hover,
+.btn-yes:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(255, 107, 157, 0.4);
+}
+
+.btn-no {
+    background: #e0e0e0;
+    color: #666;
+    margin-left: 10px;
+}
+
+.btn-no:hover {
+    background: #d0d0d0;
+}
+
+/* ==================== SECTION 1: OVERLAY ==================== */
+#overlay {
+    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 50%, #ff9a9e 100%);
+}
+
+.overlay-content {
+    text-align: center;
+}
+
+.overlay-title {
+    font-size: 8rem;
+    margin-bottom: var(--spacing-md);
+    animation: bounce 2s ease infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+.overlay-subtitle {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: var(--spacing-xl);
+    font-family: var(--font-body);
+}
+
+/* ==================== SECTION 2: HOME ==================== */
+.sticker-img {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    margin-bottom: var(--spacing-lg);
+    border-radius: 20px;
+    animation: pulse 2s ease infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* ==================== SECTION 3: MEMORIES ==================== */
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: var(--spacing-lg);
+}
+
+/* ==================== HEART PHOTO FRAMES ==================== */
+/* ==================== HEART PHOTO FRAMES ==================== */
+.photo-item {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    border: 5px solid white;
+}
+
+.photo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+/* Decorative Heart Overlay */
+.photo-item::after {
+    content: '❤️';
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 1.5rem;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    z-index: 5;
+    transition: transform 0.3s ease;
+}
+
+.photo-item:hover {
+    transform: scale(1.05) rotate(2deg);
+    z-index: 10;
+    box-shadow: 0 15px 30px rgba(255, 107, 157, 0.3);
+    border-color: var(--pink-primary);
+}
+
+.photo-item:hover img {
+    transform: scale(1.1);
+}
+
+.photo-item:hover::after {
+    transform: scale(1.3) rotate(15deg);
+}
+
+/* ==================== MESSAGE MODAL ==================== */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: white;
+    padding: 2rem 3rem;
+    border-radius: 20px;
+    max-width: 90%;
+    text-align: center;
+    transform: scale(0.8);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 15px 40px rgba(255, 107, 157, 0.4);
+    border: 4px solid var(--pink-primary);
+}
+
+.modal.active .modal-content {
+    transform: scale(1);
+}
+
+#modalText {
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    color: var(--pink-primary);
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.modal-hint {
+    font-size: 0.9rem;
+    color: #999;
+}
+
+
+
+/* ==================== SECTION 5: ENVELOPE ==================== */
+.envelope-icon {
+    font-size: 8rem;
+    margin-bottom: var(--spacing-md);
+    animation: swing 2s ease infinite;
+}
+
+@keyframes swing {
+
+    0%,
+    100% {
+        transform: rotate(-10deg);
+    }
+
+    50% {
+        transform: rotate(10deg);
+    }
+}
+
+/* ==================== SECTION 6: PRANK ==================== */
+.prank-image {
+    max-width: 150px;
+    width: 100%;
+    height: auto;
+    margin-bottom: var(--spacing-md);
+    border-radius: 20px;
+}
+
+.prank-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+#noBtn {
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+/* ==================== SECTION 7: LETTER ==================== */
+.letter-wrapper {
+    max-width: 700px;
+    max-height: 80vh;
+    overflow-y: auto;
+    text-align: left;
+}
+
+.letter-content {
+    line-height: 1.8;
+    font-size: 1rem;
+    color: #444;
+}
+
+.letter-content p {
+    margin-bottom: var(--spacing-md);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1.5s ease, transform 1.5s ease;
+}
+
+.letter-content p.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.signature {
+    margin-top: var(--spacing-lg);
+    font-style: italic;
+    text-align: right;
+    color: var(--pink-primary);
+    font-size: 1.1rem;
+}
+
+/* ==================== ADDITIONAL FEATURES ==================== */
+.music-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: white;
+    border: none;
+    box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.music-toggle:hover {
+    transform: scale(1.1);
+}
+
+.counter-text {
+    font-size: 1.2rem;
+    color: var(--pink-primary);
+    margin: var(--spacing-md) auto var(--spacing-lg);
+    font-family: var(--font-title);
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px 20px;
+    border-radius: 20px;
+    display: inline-block;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+/* ==================== RESPONSIVE DESIGN ==================== */
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .overlay-title {
+        font-size: 5rem;
+    }
+
+    .content-wrapper {
+        padding: 1.5rem;
+        width: 90%;
+    }
+
+    .photo-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .photo-item {
+        border-width: 3px;
+    }
+
+    .photo-item::after {
+        font-size: 1rem;
+        bottom: 5px;
+        right: 5px;
+    }
+
+    .photo-item img {
+        height: auto;
+        /* Let aspect-ratio handle it */
+    }
+
+    .sticker-img {
+        max-width: 180px;
+    }
+
+    .btn-primary,
+    .btn-next,
+    .btn-yes,
+    .btn-no {
+        padding: 12px 25px;
+        font-size: 1rem;
+        width: 100%;
+        /* Full width buttons for easier tapping */
+        margin: 5px 0;
+    }
+
+    .prank-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .btn-no {
+        margin-left: 0;
+    }
+
+    .letter-wrapper {
+        max-height: 60vh;
+        /* Prevent keyboard overlap issues */
+    }
+
+    .section-text {
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .music-toggle {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+        top: 15px;
+        right: 15px;
+    }
+
+    .counter-text {
+        font-size: 1rem;
+        padding: 8px 15px;
+        margin: var(--spacing-sm) auto var(--spacing-md);
+    }
+}
+
+@media (max-width: 480px) {
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .overlay-title {
+        font-size: 3.5rem;
+    }
+
+    .content-wrapper {
+        padding: 1.2rem;
+    }
+
+    .envelope-icon {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+    }
+
+    .photo-grid {
+        grid-template-columns: repeat(2, 1fr);
+        /* Keep 2 cols on very small screens too */
+    }
+}
+
+/* ==================== SCROLLBAR STYLING ==================== */
+.letter-wrapper::-webkit-scrollbar {
+    width: 8px;
+}
+
+.letter-wrapper::-webkit-scrollbar-track {
+    background: var(--pink-light);
+    border-radius: 10px;
+}
+
+.letter-wrapper::-webkit-scrollbar-thumb {
+    background: var(--pink-primary);
+    border-radius: 10px;
+}
+
+.letter-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #ff5089;
+}
+
+/* ==================== WHATSAPP BUTTON ==================== */
+.reply-container {
+    margin-top: 40px;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.btn-whatsapp {
+    display: inline-block;
+    padding: 15px 30px;
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+    transition: all 0.3s ease;
+    animation: pulse 2s infinite;
+}
+
+.btn-whatsapp:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(37, 211, 102, 0.6);
+}

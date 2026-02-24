@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day 💌</title>
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Happy Valentine's Day 💌">
+    <meta property="og:description" content="You have a special message...">
+    <meta property="og:image" content="assets/sticker.gif">
+    <meta property="og:type" content="website">
+
+    <!-- Favicon -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💖</text></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Varela+Round&display=swap" rel="stylesheet">
+    <!-- Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Music Toggle Button -->
+    <button id="musicToggle" class="music-toggle" title="Play/Pause Music">🎵</button>
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="assets/musik.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Floating Hearts Background -->
+    <div class="hearts-container" id="heartsContainer"></div>
+
+    <!-- SECTION 1: OVERLAY PEMBUKA -->
+    <section id="overlay" class="section active">
+        <div class="overlay-content">
+            <h1 class="overlay-title">💌</h1>
+            <p class="overlay-subtitle">You have a special message...</p>
+            <button class="btn-primary" id="openBtn">Open Invitation 💌</button>
+        </div>
+    </section>
+
+    <!-- SECTION 2: HOME -->
+    <section id="home" class="section">
+        <div class="content-wrapper">
+            <img src="assets/sticker.gif" alt="Cute Sticker" class="sticker-img">
+            <h2 class="section-title">Happy Valentine's Day! ❤️</h2>
+            <p class="section-text">Today is a special day just for you...</p>
+            <div id="relationshipCounter" class="counter-text"></div>
+            <button class="btn-next" data-next="memories">Next →</button>
+        </div>
+    </section>
+
+    <!-- SECTION 3: MEMORIES (GALERI) -->
+    <section id="memories" class="section">
+        <div class="content-wrapper">
+            <h2 class="section-title">Our Memories :3</h2>
+            <div class="photo-grid">
+                <div class="photo-item"
+                    onclick="showMessage('First time I saw you, my heart whispered: That is the one. ❤️')">
+                    <img src="assets/foto1.jpeg" alt="Memory 1">
+                </div>
+                <div class="photo-item" onclick="showMessage('Every moment with you is my favorite memory. ✨')">
+                    <img src="assets/foto2.jpeg" alt="Memory 2">
+                </div>
+                <div class="photo-item" onclick="showMessage('You are my sun, my moon, and all my stars. 🌟')">
+                    <img src="assets/foto3.jpeg" alt="Memory 3">
+                </div>
+                <div class="photo-item" onclick="showMessage('Just looking at you makes me smile. 😊')">
+                    <img src="assets/foto4.jpeg" alt="Memory 4">
+                </div>
+                <div class="photo-item" onclick="showMessage('I love you more than words can say. 💕')">
+                    <img src="assets/foto5.jpeg" alt="Memory 5">
+                </div>
+                <div class="photo-item" onclick="showMessage('Forever grateful to have you in my life. 🙏')">
+                    <img src="assets/foto6.jpeg" alt="Memory 6">
+                </div>
+            </div>
+
+            <!-- Message Modal -->
+            <div id="messageModal" class="modal" onclick="closeMessage()">
+                <div class="modal-content">
+                    <p id="modalText"></p>
+                    <span class="modal-hint">(Tap to close)</span>
+                </div>
+            </div>
+
+            <button class="btn-next" data-next="envelope">Next →</button>
+        </div>
+    </section>
+
+
+
+    <!-- SECTION 5: AMPLOP SURAT -->
+    <section id="envelope" class="section">
+        <div class="content-wrapper">
+            <div class="envelope-icon">✉️</div>
+            <h2 class="section-title">I wrote a letter for you...</h2>
+            <p class="section-text">But first, let me ask you something...</p>
+            <button class="btn-next" data-next="prank">Next →</button>
+        </div>
+    </section>
+
+    <!-- SECTION 6: INTERAKSI (PRANK) -->
+    <section id="prank" class="section">
+        <div class="content-wrapper">
+            <img src="assets/giphy.gif" alt="Cute Cat" class="prank-image">
+            <h2 class="section-title" id="prankQuestion">Do you want to open it?</h2>
+            <div class="prank-buttons">
+                <button class="btn-yes" id="yesBtn">Open it ❤️</button>
+                <button class="btn-no" id="noBtn">No ty</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 7: SURAT CINTA (FINAL) -->
+    <section id="letter" class="section">
+        <div class="content-wrapper letter-wrapper">
+            <h2 class="section-title">My Dearest Valentine 💕</h2>
+            <div class="letter-content">
+                <p>To the most special person in my life,</p>
+                <p>Every moment with you feels like magic. From the first time we met, I knew there was something
+                    extraordinary about you. Your smile brightens my darkest days, and your laughter is the sweetest
+                    melody I've ever heard.</p>
+                <p>You've shown me what it means to love and be loved unconditionally. Through every challenge, every
+                    victory, every quiet moment, you've been there—my constant, my comfort, my home.</p>
+                <p>These photos we've shared capture just a fraction of our journey together, but every single moment is
+                    etched in my heart forever. The memories we've created are treasures I'll cherish for a lifetime.
+                </p>
+                <p>Thank you for being you—beautiful, kind, and absolutely perfect in every way. You inspire me to be
+                    better, to dream bigger, and to love deeper.</p>
+                <p>On this Valentine's Day and every day after, I want you to know: You are loved. You are cherished.
+                    You are my everything.</p>
+                <p>Happy Valentine's Day, my love. Here's to forever with you. ❤️</p>
+                <p class="signature">Forever yours,<br>Tiarbah.</p>
+                <div class="reply-container">
+                    <a href="https://wa.me/6281384828384?text=Hai%20sayang%20Tiarbah,%20aku%20udah%20baca%20suratnya.%20So%20sweet%20banget!%20Happy%20Valentine's%20Day%20too!%20I%20love%20you%20more!%20%E2%9D%A4%EF%B8%8F"
+                        target="_blank" class="btn-whatsapp">
+                        Balas via WhatsApp 💬
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
